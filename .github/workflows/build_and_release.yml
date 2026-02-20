@@ -39,10 +39,20 @@ jobs:
           source ./tools/export_toolchains.sh
           ./tools/build_all_chips.sh
 
+      - name: Create stub JSONs ZIP
+        shell: bash
+        run: |
+          mkdir -p dist
+          cp build*/esp*.json dist/
+          cd dist
+          zip ../flasher-stubs.zip *.json
+
       - name: Upload stub JSONs
         uses: actions/upload-artifact@v4
         with:
-          path: build*/esp*.json
+          path: |
+            build*/esp*.json
+            flasher-stubs.zip
           if-no-files-found: error
           retention-days: 3
 
@@ -87,4 +97,6 @@ jobs:
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
-          files: artifact/build*/esp*.json
+          files: |
+            artifact/build*/esp*.json
+            artifact/flasher-stubs.zip

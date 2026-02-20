@@ -13,6 +13,12 @@
 extern "C" {
 #endif
 
+// Flash geometry constants (mirror of esp-stub-lib internal target/flash.h)
+#define STUB_FLASH_SECTOR_SIZE 0x1000U
+#define STUB_FLASH_BLOCK_SIZE  0x10000U
+#define STUB_FLASH_PAGE_SIZE   0x100U
+#define STUB_FLASH_STATUS_MASK 0xFFFFU
+
 // 0x4000 plus 0xFF is the maximum data size sent by esptool (WRITE_FLASH command), so keeping for the compatibility
 #define ESPTOOL_MAX_DATA_SIZE (0x4000U + 0xFFU)
 #define HEADER_SIZE 8U

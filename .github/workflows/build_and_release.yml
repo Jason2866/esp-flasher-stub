@@ -1,7 +1,9 @@
 ---
 name: Build and release
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:      # Start a workflow
+  push:
 
 jobs:
   build_stubs:
